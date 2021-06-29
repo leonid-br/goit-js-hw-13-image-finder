@@ -1,0 +1,26 @@
+.stats {
+  display: flex;
+  justify-content: center;
+}
+
+.stats-item:not(:first-child) {
+  margin-left: 10px;
+}
+
+.stats-item {
+  display: flex;
+  align-items: center;
+}
+
+.material-icons {
+  margin-right: 10px;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-left: 0;
+  margin-right: 50px;
+  margin-left: 50px;
+}
