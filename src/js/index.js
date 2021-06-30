@@ -33,7 +33,7 @@ search.addEventListener('click', e => {
                 block: "end",
                 inline: "nearest"
             })
-        }, 400);
+        }, 300);
     } else {
       pageNum = 1;
       return;
