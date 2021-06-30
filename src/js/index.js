@@ -16,6 +16,7 @@ btnMorePic.style.visibility = 'hidden';
 
 search.addEventListener('click', e => {
   e.preventDefault();
+
   const value = inputEl.value;
   let pageNum = 1;
 
@@ -23,8 +24,16 @@ search.addEventListener('click', e => {
 
   btnMorePic.addEventListener('click', () => {
     pageNum += 1;
+
     if (value === inputEl.value) {
       nextsRenderings(value, pageNum);
+      setTimeout(() => {
+            galery.scrollIntoView({
+                behavior: "smooth",
+                block: "end",
+                inline: "nearest"
+            })
+        }, 400);
     } else {
       pageNum = 1;
       return;
@@ -37,23 +46,22 @@ function firstRendering(value, pageNum) {
     alert('Ведите название картинки');
     return;
   }
-  apiService(value, pageNum).then(card => {
+    checkRender(value, pageNum)
+}
+
+function nextsRenderings(value, pageNum) {
+  apiService(value, pageNum)
+  .then(card => {galery.insertAdjacentHTML('beforeend', cardsMarkup(card.hits))});
+}
+
+function checkRender(value, pageNum) {
+    apiService(value, pageNum).then(card => {
     if (card.hits.length === 0) {
       alert('Такой картинки нет');
       return;
     }
     galery.innerHTML = cardsMarkup(card.hits);
     btnMorePic.style.visibility = 'visible';
-  });
-}
-
-function nextsRenderings(value, pageNum) {
-  apiService(value, pageNum).then(card => {
-    const marckuap = cardsMarkup(card.hits);
-    galery.insertAdjacentHTML('beforeend', marckuap);
-    galery.scrollIntoView({
-      behavior: 'smooth',
-      block: 'end',
-    });
+    
   });
 }
