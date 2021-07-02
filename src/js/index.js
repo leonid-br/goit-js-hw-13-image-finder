@@ -3,7 +3,7 @@ import '../sass/main.scss';
 // Import Function
 import apiService from './apiService';
 
-// Import Tamplates
+// Import Tеmplates
 import cardsMarkup from '../templates/card';
 
 // Refs
