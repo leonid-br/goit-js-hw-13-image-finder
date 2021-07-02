@@ -11,6 +11,8 @@ const galery = document.querySelector('.gallery');
 const search = document.querySelector('.js-search');
 const inputEl = document.querySelector('#input');
 const btnMorePic = document.querySelector('.js-btn');
+const scroll = document.querySelector('body')
+
 
 btnMorePic.style.visibility = 'hidden';
 
@@ -27,13 +29,6 @@ search.addEventListener('click', e => {
 
     if (value === inputEl.value) {
       nextsRenderings(value, pageNum);
-      setTimeout(() => {
-            galery.scrollIntoView({
-                behavior: "smooth",
-                block: "end",
-                inline: "nearest"
-            })
-        }, 300);
     } else {
       pageNum = 1;
       return;
@@ -51,11 +46,19 @@ function firstRendering(value, pageNum) {
 
 function nextsRenderings(value, pageNum) {
   apiService(value, pageNum)
-  .then(card => {galery.insertAdjacentHTML('beforeend', cardsMarkup(card.hits))});
+  .then(card => {
+    galery.insertAdjacentHTML('beforeend', cardsMarkup(card.hits))})
+  .then(()=>{
+    scroll.scrollIntoView({
+      behavior: "smooth",
+      block: "end"
+  });
+  })
 }
 
 function checkRender(value, pageNum) {
     apiService(value, pageNum).then(card => {
+      console.log(card);
     if (card.hits.length === 0) {
       alert('Такой картинки нет');
       return;

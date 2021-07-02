@@ -8,6 +8,7 @@ export default function fetchCountries(searchPicture, pageNum) {
   return fetch(url).then(response => {
     if (response.ok) {
       return response.json();
+    
     } else {
       return [];
     }
