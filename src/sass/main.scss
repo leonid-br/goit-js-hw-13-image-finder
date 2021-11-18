@@ -7,6 +7,17 @@
 @import './input';
 @import './galery';
 
-ul{
-    list-style: none;
+body {
+  background-color: darkgrey;
+}
+
+h2 {
+  margin: 0;
+  margin-top: 10px;
+  padding: 0;
+  text-align: center;
+}
+
+ul {
+  list-style: none;
 }

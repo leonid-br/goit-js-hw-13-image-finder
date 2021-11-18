@@ -1,24 +1,31 @@
 .search-form {
   padding: 15px;
+  display: flex;
+  justify-content: center;
 }
 
 input#input {
   width: 200px;
   font-size: 13px;
   padding: 6px 0 6px 10px;
-  border: 1px solid blue;
+
   background: #f6f6f6;
-  border-radius: 8px;
 }
 
 input {
   width: 100px;
   font-size: 13px;
   padding: 6px;
-  border: 2px solid blue;
+  box-shadow: inset 1px 1px 3px -1px rgba(0, 0, 0, 0.6);
+  border: none;
+  color: darkgrey;
   background: #f6f6f6;
   border-radius: 8px;
   cursor: pointer;
+  &:hover,
+  &:focus {
+    color: black;
+  }
 }
 
 .js-btn {
@@ -57,4 +64,8 @@ input {
 .js-btn:hover:before {
   background: white;
   color: #24d8f7;
+}
+
+.js-search {
+  margin-left: 5px;
 }

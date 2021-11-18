@@ -11,8 +11,7 @@ const galery = document.querySelector('.gallery');
 const search = document.querySelector('.js-search');
 const inputEl = document.querySelector('#input');
 const btnMorePic = document.querySelector('.js-btn');
-const scroll = document.querySelector('body')
-
+const scroll = document.querySelector('body');
 
 btnMorePic.style.visibility = 'hidden';
 
@@ -41,30 +40,29 @@ function firstRendering(value, pageNum) {
     alert('Ведите название картинки');
     return;
   }
-    checkRender(value, pageNum)
+  checkRender(value, pageNum);
 }
 
 function nextsRenderings(value, pageNum) {
   apiService(value, pageNum)
-  .then(card => {
-    galery.insertAdjacentHTML('beforeend', cardsMarkup(card.hits))})
-  .then(()=>{
-    scroll.scrollIntoView({
-      behavior: "smooth",
-      block: "end"
-  });
-  })
+    .then(card => {
+      galery.insertAdjacentHTML('beforeend', cardsMarkup(card.hits));
+    })
+    .then(() => {
+      scroll.scrollIntoView({
+        behavior: 'smooth',
+        block: 'end',
+      });
+    });
 }
 
 function checkRender(value, pageNum) {
-    apiService(value, pageNum).then(card => {
-      console.log(card);
+  apiService(value, pageNum).then(card => {
     if (card.hits.length === 0) {
       alert('Такой картинки нет');
       return;
     }
     galery.innerHTML = cardsMarkup(card.hits);
     btnMorePic.style.visibility = 'visible';
-    
   });
 }
